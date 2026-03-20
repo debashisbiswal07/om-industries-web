@@ -1,0 +1,21 @@
+<div class="card text-white bg-{{ bgClass }}">
+    <div class="card-header">
+        <div class="row">
+            <div class="col col-xs-3">
+                <!-- <i class="fa {{ icon }} fa-5x"></i> -->
+                 <img [src]="src" height="100" width="100" class="img-trx">
+            </div>
+            <div class="col col-xs-9 text-right">
+                <!-- <div class="d-block huge">{{ count }}</div> -->
+                <div class="d-block"><b>{{ label }}</b></div>
+                <div class="d-block mt-2 font-size">{{ content }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">        
+        <a class="float-right card-inverse" [href]="'/products/' + urlId">
+            <span class="float-left">View Details {{ data }}</span>
+            <span><i class="fa fa-arrow-circle-right"></i></span>
+        </a>
+    </div>
+</div>

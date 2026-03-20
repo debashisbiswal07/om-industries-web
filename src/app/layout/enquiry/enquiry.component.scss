@@ -1,0 +1,22 @@
+p { font-family: inherit; }  
+#root { padding: 30px; }  
+.register-form { max-width: 350px; margin: auto; } 
+.btn-margin-top { margin-top: 15px;}
+.margin-left { margin-left: 5px;}
+.aggrid { margin-top: 10px; }
+.color-red {
+    color: red;
+}
+
+.captcha {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    display: flex;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

@@ -1,0 +1,18 @@
+<div v-if="pinDataList.length > 0">
+    <table border="1">
+        <tr>
+            <td>Id</td>
+            <td>From</td>
+            <td>To</td>
+            <td>Turns</td>
+            <td>Gauge</td>
+        </tr>
+        <tr *ngFor="let item of pinDataList">
+            <td>{{item.pinConfigOrder}}</td>
+            <td>{{item.fromPin}}</td>
+            <td>{{item.toPin}}</td>
+            <td>{{item.turns}}</td>
+            <td>{{item.gauge}}</td>
+        </tr>
+    </table>
+</div>

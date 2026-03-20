@@ -1,0 +1,44 @@
+<div>
+    <app-page-header [heading]="'Pin Data'" [icon]="'fa-edit'"></app-page-header>
+
+    <div class="register-form">
+        <form name="form" #f="ngForm">  
+            <div class="row">
+                <div class="col-xl-3 text-xs-center">
+                    <label class="font12">Company Name</label>
+                    <select class="form-select" name="companyName" placeholder="Select Company" [(ngModel)]="form.companyName" (ngModelChange)='getPinData()'>
+                        <option *ngFor="let item of companyNameList" [ngValue]="item.key"> {{ item.value }} </option>
+                    </select>
+                </div>
+                <div class="col-xl-3 text-xs-center">
+                    <label class="font12">Pin Name</label>
+                    <select class="form-select" name="pinName" placeholder="Select Pin" [(ngModel)]="form.pinName" (change)='getPinData()'>
+                        <option *ngFor="let item of pinNameList" [ngValue]="item.key"> {{ item.value }} </option>
+                    </select>
+                </div>
+                <div class="col-xl-3 text-xs-center">
+                    <label class="font12">Pin Number</label>
+                    <select class="form-select" name="pinNo" placeholder="Select Pin No" [(ngModel)]="form.pinNo" (change)='getPinData()'>
+                        <option *ngFor="let item of pinNosList" [ngValue]="item.key"> {{ item.value }} </option>
+                    </select>
+                </div>
+                <div class="col-xl-3 text-xs-center">
+                    <label class="font12">Pin Type</label>
+                    <select class="form-select" name="pinType" placeholder="Select Pin Type" [(ngModel)]="form.pinType" (change)='getPinData()'>
+                        <option *ngFor="let item of pinTypeList" [ngValue]="item.key"> {{ item.value }} </option>
+                    </select>
+                </div>
+            </div>       
+        </form>
+    </div>
+    <div class="aggrid">
+        <ag-grid-angular 
+            style="width: 100%; height: 475px;" 
+            class="ag-theme-alpine"
+            [defaultColDef] = "defaultColDef"
+            [rowData]="rowData" 
+            [columnDefs]="columnDefs"
+            [rowHeight]="rowHeight">            
+        </ag-grid-angular>
+    </div>
+</div>

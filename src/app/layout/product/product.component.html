@@ -1,0 +1,276 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Product'" [icon]="'fa-product-hunt'"></app-page-header>
+    <div class="row">
+        <div class="col-xl-3 text-xs-center">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="text-xs-center">
+                        <p><b><a (click)="setProduct(1)" class="product-header"><i class="fa fa-fw fa-database"></i>
+                                    Electrical Transformer</a></b></p>
+                        <ul class="no-bullets">
+                            <li><a (click)="setProduct(1)"><i class="fa fa-fw fa-star mr-2"></i>High Frequency
+                                    Transformer</a></li>
+                            <li><a (click)="setProduct(2)"><i class="fa fa-fw fa-star"></i>Voltage Stabilizer
+                                    Transformer</a></li>
+                            <li><a (click)="setProduct(3)"><i class="fa fa-fw fa-star"></i>Transformer For UPS &
+                                    Inverter</a></li>
+                            <li><a (click)="setProduct(4)"><i class="fa fa-fw fa-star"></i>Transformer For
+                                    Stabilizer</a></li>
+                            <li><a (click)="setProduct(5)"><i class="fa fa-fw fa-star"></i>AC DC Adaptor Transformer</a>
+                            </li>
+                            <li><a (click)="setProduct(6)"><i class="fa fa-fw fa-star"></i>PCB Mountable Transformer</a>
+                            </li>
+                            <li><a (click)="setProduct(7)"><i class="fa fa-fw fa-star"></i>PCB Mountable Pulse
+                                    Transformer</a></li>
+                        </ul>
+                        <p class="mt-4"><b><a (click)="setProduct(8)" class="product-header">
+                                    <i class="fa fa-fw fa-database"></i>Power SMPS</a></b></p>
+                        <p><b><a (click)="setProduct(9)" class="product-header">
+                                    <i class="fa fa-fw fa-database"></i>CC Led Driver</a></b></p>
+                        <p><b><a (click)="setProduct(10)" class="product-header">
+                                    <i class="fa fa-fw fa-database"></i>Electrical Coils & Chokes</a></b></p>
+                        <ul class="no-bullets">
+                            <li><a (click)="setProduct(10)"><i class="fa fa-fw fa-star"></i>Electric Field Coil</a></li>
+                            <li><a (click)="setProduct(11)"><i class="fa fa-fw fa-star"></i>Electric Chokes</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 text-xs-center">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="text-xs-center" *ngIf="selectedProduct === 1">
+                        <h3>Electrical Transformer: High Frequency Transformer</h3>
+                        <img src="assets/images/products/high-frequency-transformer.jpg" class="mt-4 mb-4" />
+                        <p>With years of experience and expertise in this domain, we have emerged as an affluent
+                            manufacturer and supplier of an assorted range of High Frequency Transformer. These
+                            transformers are manufactured using superior grade basic material under the observance of
+                            the international standards. To ensure quality, our team of quality controllers inspects
+                            these high performance transformers against various parameters. Moreover, clients can avail
+                            these transformers as per their needs at affordable price structure.</p>
+                        <p><b>Test Conducted :</b></p>
+                        <p>During manufacturing all components as well as raw materials used undergo extensive testing
+                            at our labs, Special test like heat run is conducted on the prototype of every lot</p>
+                        <p><b>Some other tests outsourced to reputed agencies include:</b></p>
+                        <ul>
+                            <li>H V Test</li>
+                            <li>Short circuit test</li>
+                            <li>No load current and on load current and voltages</li>
+                        </ul>
+                        <p><b>Features :</b></p>
+                        <ul>
+                            <li>Computerized designs</li>
+                            <li>Provides maximum efficiency</li>
+                            <li>Manufactured as per relevant industry standards</li>
+                            <li>Finished products undergo extensive testing to ensure in them optimum operational
+                                efficiency</li>
+                            <li>Come with high quality insulation</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 2">
+                        <h3>Electrical Transformer: Voltage Stabilizer Transformer</h3>
+                        <img src="assets/images/products/voltage-stabilizer-transformer.jpg" class="mt-4 mb-4" />
+                        <p>With the assistance of an adroit team of professionals, we are engaged in manufacturing and
+                            supplying a wide range of superior quality Voltage Stabilizer Transformer. Our offered
+                            transformers are manufactured using supreme class raw material and latest technology in
+                            conformity with set industrial norms. To match the international quality standards, these
+                            are rigorously tested by our team of quality controllers on various parameters. Clients can
+                            avail these transformers in numerous technical and electrical specifications according to
+                            the application area.</p>
+                        <p><b>Test Conducted :</b></p>
+                        <p>During manufacturing all components as well as raw materials used undergo extensive testing
+                            at our labs, Special test like heat run is conducted on the prototype of every lot</p>
+
+                        <p><b>Features :</b></p>
+                        <ul>
+                            <li>Computerized designs</li>
+                            <li>Provides maximum efficiency</li>
+                            <li>Manufactured as per relevant industry standards</li>
+                            <li>Finished products undergo extensive testing to ensure in them optimum operational
+                                efficiency</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 3">
+                        <h3>Electrical Transformer: Transformer For UPS & Inverter</h3>
+                        <img src="assets/images/products/transformer-for-ups.jpg" class="mt-4 mb-4" />
+                        <p>We are an eminent entity engaged in offering an extensive range of excellently designed
+                            Transformer For UPS & Inverter. These are manufactured at our state-of-the-art manufacturing
+                            unit under the guidance of our qualified professionals using the finest quality raw material
+                            and advanced technology. Our offered range is highly acclaimed for its unique attributes,
+                            thus broadly demanded all across the market. We offer these immaculate transformers in
+                            different shapes, sizes and other technical specifications. Clients can avail these
+                            transformers as per their need at industry leading prices.</p>
+                        <p><b>Test Conducted :</b></p>
+                        <p>During manufacturing all components as well as raw materials used undergo extensive testing
+                            at our labs, Special test like heat run is conducted on the prototype of every lot</p>
+                        <p><b>Some other tests outsourced to reputed agencies include:</b></p>
+                        <ul>
+                            <li>H V Test</li>
+                            <li>Short circuit test</li>
+                            <li>No load current and on load current and voltages</li>
+                        </ul>
+                        <p><b>Features :</b></p>
+                        <ul>
+                            <li>Precision engineered</li>
+                            <li>Low maintenance</li>
+                            <li>High performance</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 4">
+                        <h3>Electrical Transformer: Transformer For Stabilizer</h3>
+                        <img src="assets/images/products/transformer-for-stabilizers.jpg" class="mt-4 mb-4" />
+                        <p>We are an eminent entity engaged in offering an extensive range of excellently designed
+                            Transformer For Stabilizer. These are manufactured at our state-of-the-art manufacturing
+                            unit under the guidance of our qualified professionals using the finest quality raw material
+                            and advanced technology. Our offered range is highly acclaimed for its unique attributes,
+                            thus broadly demanded all across the market. We offer these immaculate transformers in
+                            different shapes, sizes and other technical specifications. Clients can avail these
+                            transformers as per their need at industry leading prices.</p>
+                        <p><b>Test Conducted :</b></p>
+                        <p>During manufacturing all components as well as raw materials used undergo extensive testing
+                            at our labs, Special test like heat run is conducted on the prototype of every lot.</p>
+                        <p><b>Some other tests outsourced to reputed agencies include:</b></p>
+                        <ul>
+                            <li>Impulse test</li>
+                            <li>Short circuit test</li>
+                            <li>Dynamic and thermal ability test</li>
+                        </ul>
+                        <p><b>Features :</b></p>
+                        <ul>
+                            <li>High functionality</li>
+                            <li>Optimum performance</li>
+                            <li>Voltage stability</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 5">
+                        <h3>Electrical Transformer: AC DC Adaptor Transformer</h3>
+                        <img src="assets/images/products/ac-dc-adapter-transformers.jpg" class="mt-4 mb-4" />
+                        <p>We are recognized as one of the leading manufacturers and suppliers of an immaculate range of
+                            AC DC Adaptor Transformer. Our offered transformers are manufactured by our highly skilled
+                            professionals using high grade components and devices in adherence to the set industry
+                            norms. Further, these transformers are tested against various quality parameters to ensure
+                            quality and flawlessness. We offer our transformers in various specifications to cater to
+                            the varied needs of the clients at affordable prices.</p>
+                        <p><b>Test Conducted :</b></p>
+                        <p>During manufacturing all components as well as raw materials used undergo extensive testing
+                            at our labs, Special test like heat run is conducted on the prototype of every lot.</p>
+                        <p><b>Some other tests outsourced to reputed agencies include:</b></p>
+                        <ul>
+                            <li>H V Test</li>
+                            <li>Short circuit test</li>
+                            <li>No load current and on load current and voltages</li>
+                        </ul>
+                        <p><b>Features :</b></p>
+                        <ul>
+                            <li>Computerized designs</li>
+                            <li>Provides maximum efficiency</li>
+                            <li>Manufactured as per relevant industry standards</li>
+                            <li>Finished products undergo extensive testing to ensure in them optimum operational
+                                efficiency</li>
+                            <li>Come with high quality insulation</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 6">
+                        <h3>Electrical Transformer: PCB Mountable Transformer</h3>
+                        <img src="assets/images/products/pcb-mountable-transformer.jpg" class="mt-4 mb-4" />
+                        <p>We take pleasure to introduce ourselves as one of the renowned manufacturer and supplier of
+                            PCB Mountable Transformer. Manufactured using high grade devices & components and
+                            cutting-edge technology, these transformers are highly accepted by our customers. Further,
+                            our products are thoroughly tested against various quality parameters before final delivery
+                            at client's end. Clients can avail these mountable transformers from us as per the pacific
+                            requirements at industry competent prices.</p>
+                        <p><b>Test Conducted :</b></p>
+                        <p>During manufacturing all components as well as raw materials used undergo extensive testing
+                            at our labs, Special test like heat run is conducted on the prototype of every lot.</p>
+
+                        <p><b>Features :</b></p>
+                        <ul>
+                            <li>Computerized designs</li>
+                            <li>Provides maximum efficiency</li>
+                            <li>Manufactured as per relevant industry standards</li>
+                            <li>Finished products undergo extensive testing to ensure in them optimum operational
+                                efficiency</li>
+                            <li>Come with high quality insulation</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 7">
+                        <h3>Electrical Transformer: PCB Mountable Pulse Transformer</h3>
+                        <img src="assets/images/products/pcb-mountable-pulse-transformer.jpg" class="mt-4 mb-4" />
+                        <p>Being the market leader in this domain, we are actively committed towards offering high
+                            quality range of PCB Mountable Pulse Transformer. These transformers are manufactured by our
+                            professionals using high grade factor inputs in conformity with international quality
+                            standards. To ensure quality and flawlessness, the entire range is well tested against
+                            various quality parameters. Further, clients can avail these transformers at affordable
+                            prices within stipulated time frame.</p>
+                        <p><b>Test Conducted :</b></p>
+                        <p>During manufacturing all components as well as raw materials used undergo extensive testing
+                            at our labs, Special test like heat run is conducted on the prototype of every lot.</p>
+
+                        <p><b>Some other tests outsourced to reputed agencies include:</b></p>
+                        <ul>
+                            <li>H V Test</li>
+                            <li>Short circuit test</li>
+                            <li>No load current and on load current and voltages</li>
+                        </ul>
+                        <p><b>Features :</b></p>
+                        <ul>
+                            <li>Computerized designs</li>
+                            <li>Provides maximum efficiency</li>
+                            <li>Manufactured as per relevant industry standards</li>
+                            <li>Finished products undergo extensive testing to ensure in them optimum operational
+                                efficiency</li>
+                            <li>Come with high quality insulation</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 8">
+                        <h3>Power SMPS</h3>
+                        <img src="assets/images/products/power-smps.jpg" class="mt-4 mb-4" />
+                        <p><b>SMPS-12V/1A to 12V/20A</b></p>
+                        <p><b>Available For :</b></p>
+                        <ul>
+                            <li>L.E.D Lighting</li>
+                            <li>CC Camera & Other Industrial Uses</li>
+                            <li>No load current and on load current and voltages</li>
+                        </ul>
+                        <p><b>Power SMPS Features :</b></p>
+                        <ul>
+                            <li>Universal Ac I/p full range</li>
+                            <li>Protection Short ckt / Over load/ Over Voltage</li>
+                            <li>Power ON LED Indicator</li>
+                            <li>Full Load burn in test</li>
+                            <li>High Voltage Surge protected</li>
+                            <li>High Operating Temperature up to 70 c</li>
+                            <li>High Efficiency & Reliability</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 9">
+                        <h3>CC Led Driver</h3>
+                        <img src="assets/images/products/cc-led-driver.jpg" class="mt-4 mb-4" />
+                        <p>We are manufacturing & supplying a comprehensive range of highly efficient CC LED Driver.
+                            These CC LED Driver are manufactured using high grade components & devices and cutting edge
+                            technology at our advanced manufacturing unit.</p>
+                        <p><b>CC LED Features :</b></p>
+                        <ul>
+                            <li>Range: 1W to 27W for LED Lights & Panel Lights</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 10">
+                        <h3>Electrical Coils & Chokes: Electric Field Coil</h3>
+                        <img src="assets/images/products/electric-field-coils.jpg" class="mt-4 mb-4" />
+                        <p>We are offering a wide range of Electric Field Coil which are manufactured by advanced
+                            machining techniques and latest machines. These Electric Field Coils find wide applications
+                            in automobile, motors, electrical appliances hardware.</p>
+                    </div>
+                    <div class="text-xs-center" *ngIf="selectedProduct === 11">
+                        <h3>Electrical Coils & Chokes: Electrical Choke</h3>
+                        <img src="assets/images/products/electrical-chokes.jpg" class="mt-4 mb-4" />
+                        <p>These Electric Chokes are made from high quality of raw material which ensure durability at
+                            its user end. These Electric Chokes are known for its superior quality. These products are
+                            available in market at competitive rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

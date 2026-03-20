@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+
+    <a class="navbar-brand" href="">
+        <img [src]="logoImgPath" class="logoSize" />
+    </a>
+    <button (click)="toggleSidebar()" class="navbar-toggler" type="button">
+        <i aria-hidden="true" class="fa fa-bars text-muted"></i>
+    </button>
+    <div class="collapse navbar-collapse">
+
+        <ul class="navbar-nav ml-auto ul-width">
+            <li class="nav-item">
+                <a [routerLinkActive]="['router-link-active']" class="list-group-item m-header" routerLink="/dashboard">
+                    &nbsp;<span>{{ 'Dashboard' | translate }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]="['router-link-active']" [routerLink]="['/products/1']"
+                    class="list-group-item m-header">
+                    &nbsp;<span>{{ 'Products' | translate }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]="['router-link-active']" [routerLink]="['/about-us']"
+                    class="list-group-item m-header">
+                    &nbsp;
+                    <span>{{ 'About Us' | translate }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]="['router-link-active']" [routerLink]="['/gallery']"
+                    class="list-group-item m-header">
+                    &nbsp;
+                    <span>{{ 'Gallery' | translate }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]="['router-link-active']" [routerLink]="['/enquiry']"
+                    class="list-group-item m-header">
+                    &nbsp;
+                    <span>{{ 'Enquiry' | translate }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]="['router-link-active']" [routerLink]="['/contact-us']"
+                    class="list-group-item m-header-contact">
+                    &nbsp;
+                    <span>{{ 'Contact Us' | translate }}</span>
+                </a>
+            </li>
+            <li class="nav-item d-none d-xl-block">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" placeholder="{{ 'Search' | translate }}" type="text" />
+                </form>
+            </li>
+            <li class="nav-item dropdown" *ngIf="username == '' || username == undefined">
+                <a (click)="onLoggedout()" class="nav-link dropdown-item m-header nav-link-margin-left"
+                    [routerLink]="['/login']">
+                    <span><i class="fa fa-fw fa-lock"></i> {{ "Sign In" | translate }} </span>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown" ngbDropdown *ngIf="username">
+                <a class="nav-link nav-link-margin-left" href="javascript:void(0)" ngbDropdownToggle>
+                    <i class="fa fa-user"></i> {{ username | titlecase }} <b class="caret"></b>
+                </a>
+                <div class="dropdown-menu-right" ngbDropdownMenu>
+                    <!-- <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}
+                    </a> -->
+                    <a (click)="onLoggedout()" [routerLink]="['/login']" class="dropdown-item">
+                        <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

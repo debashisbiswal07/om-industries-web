@@ -1,0 +1,157 @@
+<div>
+    <app-page-header [heading]="'Add/Edit Pin'" [icon]="'fa-edit'"></app-page-header>
+
+    <div class="register-form"> 
+            <div class="row">
+              <div class="col-xl-12 text-xs-center">
+                <fieldset class="scheduler-border">
+                  <legend class="scheduler-border">Company Details</legend>
+                  <form name="form" #f="ngForm"> 
+                  <!-- Pin Company Data -->
+                  <div class="row">             
+                      <div class="col-xl-4">
+                        <label class="font12">Company Name</label>
+                        <select class="form-select" name="companyName" placeholder="Select Company" [(ngModel)]="form.companyName">
+                            <option *ngFor="let item of companyNameList" [ngValue]="item.key"> {{ item.value }} </option>
+                        </select>
+                      </div>
+                    
+                      <div class="col-xl-4">
+                        <label class="font12">Pin Name</label>
+                        <select class="form-select" name="pinName" placeholder="Select Pin" [(ngModel)]="form.pinName">
+                            <option *ngFor="let item of pinNameList" [ngValue]="item.key"> {{ item.value }} </option>
+                        </select>
+                      </div>
+                    
+                      <div class="col-xl-4">
+                        <label class="font12">Model</label>
+                        <input type="text" class="form-control" name="model" [(ngModel)]="form.model"
+                          #model="ngModel" />
+                      </div>
+                    </div> 
+                    <div class="row">     
+                      <div class="col-xl-4">
+                        <label class="font12">Description</label>
+                        <input type="text" class="form-control" name="description" [(ngModel)]="form.description"
+                          #description="ngModel" />
+                      </div>
+
+                      <div class="col-xl-2">
+                        <label class="font12">Pin Nos</label>
+                        <select class="form-select" name="pinNo" placeholder="Select Pin No" [(ngModel)]="form.pinNo">
+                            <option *ngFor="let item of pinNosList" [ngValue]="item.key"> {{ item.value }} </option>
+                        </select>
+                      </div>
+                      
+                      <div class="col-xl-2">
+                        <label class="font12">Pin Type</label>
+                        <select class="form-select" name="pinType" placeholder="Select Pin Type" [(ngModel)]="form.pinType">
+                            <option *ngFor="let item of pinTypeList" [ngValue]="item.key"> {{ item.value }} </option>
+                        </select>
+                      </div>
+                      
+                      <div class="col-xl-2">
+                        <label class="font12">Inductance</label>
+                        <input type="text" class="form-control" name="inductance" [(ngModel)]="form.inductance"
+                          required #inductance="ngModel"
+                          [ngClass]="{ 'is-invalid': f.submitted && inductance.errors }"
+                        />
+                        <div *ngIf="f.submitted && inductance.errors" class="invalid-feedback">
+                          <div *ngIf="inductance.errors['required']">Inductance is required</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-2">
+                        <label class="font12">Rate</label>
+                        <input type="text" class="form-control" name="rate" [(ngModel)]="form.rate"
+                          #rate="ngModel" />
+                      </div>
+                    </div> 
+
+                    <div class="row">
+                      <div class="col-xl-4">
+                        <label class="font12">Comments</label>
+                        <textarea type="textarea" class="form-control" name="comment" [(ngModel)]="form.comment"
+                          #comment="ngModel"></textarea>
+                      </div>
+
+                      <div class="col-xl-3">
+                        <label class="font12">Image Type</label>
+                        <select class="form-select" name="imageType" placeholder="Select Image Type" [(ngModel)]="form.imageType">
+                            <option *ngFor="let item of imageTypeList" [ngValue]="item.key"> {{ item.value }} </option>
+                        </select>
+                      </div>   
+                    </div>             
+                  </form>
+                </fieldset>
+            </div>
+            <div class="col-xl-12 text-xs-center margin-top">
+              <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Pin Details</legend>
+                <form name="formPinData" #fp="ngForm">
+                    <!-- Pin Data Config -->
+                      <table>
+                        <thead>
+                          <button class="btn btn-sm btn-primary" type="button" (click)="onAddRow($event)" 
+                          >Add Row</button>
+                        </thead>
+                        <tbody>
+                          <tr class="font12 text-xs-center">
+                            <td> Order </td>
+                            <td> From </td>
+                            <td> To </td>
+                            <td> Turns </td>
+                            <td> Gauge </td>
+                          </tr>
+                          <tr *ngFor="let row of formPinDataList;let index = index;">
+                            <td>
+                              <input type="text" class="form-control" name="pinConfigOrder" 
+                              [(ngModel)]="formPinDataList[index].pinConfigOrder"
+                              #pinConfigOrder="ngModel" />
+                            </td>
+                            <td>
+                              <input type="text" class="form-control" name="fromPin" 
+                              [(ngModel)]="formPinDataList[index].fromPin"
+                              #fromPin="ngModel">
+                            </td>
+                            <td>
+                              <input type="text" class="form-control" name="toPin" 
+                              [(ngModel)]="formPinDataList[index].toPin"
+                              #toPin="ngModel">
+                            </td>
+                            <td>
+                              <input type="text" class="form-control" name="turns" 
+                              [(ngModel)]="formPinDataList[index].turns"
+                              #turns="ngModel">
+                            </td>
+                            <td>
+                              <input type="text" class="form-control" name="gauge" 
+                              [(ngModel)]="formPinDataList[index].gauge"
+                              #gauge="ngModel">
+                            </td>
+                            <td>
+                              <button class="btn btn-sm btn-primary" type="button" 
+                              (click)="onRemoveRow(index)">Remove</button>
+                            </td>
+                            <td>
+                              <button class="btn btn-sm btn-primary" type="button" 
+                              (click)="onAddRow(index)" >Add Row</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </form>
+              </fieldset>
+        </div> 
+        <div class="form-group btn-pin">
+          <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+          <button
+            type="button"
+            (click)="onReset()"
+            class="btn btn-warning float-right margin-left" >
+            Reset
+          </button>
+        </div>
+      </div> 
+    </div>
+</div>

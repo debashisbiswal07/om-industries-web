@@ -1,0 +1,30 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Gallery'" [icon]="'fa-image'"></app-page-header>
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-3" *ngFor="let img of images">
+                <div class="card text-white bg-light mb-3">
+                    <!-- <div class="card-header"></div> -->
+                    <img [src]="img.imgSrc" alt="img.imgId" class="display-img-small" (click)="open(content, img.imgSrc)" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <!-- <h4 class="modal-title"></h4>
+            <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button> -->
+        </div>
+        <div class="modal-body">
+            <div>
+                <img [src]="selectedImage" alt="selectedImage" class="display-img-big" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="c('Close click')" class="btn btn-secondary" type="button">Close</button>
+        </div>
+    </ng-template>
+</div>

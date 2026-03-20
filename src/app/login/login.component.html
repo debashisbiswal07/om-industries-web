@@ -1,0 +1,39 @@
+<div [@routerTransition] class="login-page">
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <a [routerLink]="['/dashboard']"><img class="user-avatar" src="assets/images/logo-home.png"
+                    width="150px" /></a>
+            <h1>Om Industries</h1>
+            <h4>Only for Staff</h4>
+            <form role="form" name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)" novalidate>
+                <div class="form-content">
+                    <div class="form-group">
+                        <input [placeholder]="'Email' | translate" class="form-control input-underline input-lg"
+                            type="text" name="email" [(ngModel)]="form.email" required #email="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+                        <div *ngIf="f.submitted && email.errors" class="invalid-feedback">
+                            <div *ngIf="email.errors['required']">Email is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [placeholder]="'Password' | translate" class="form-control input-underline input-lg"
+                            type="password" name="password" [(ngModel)]="form.password" required #password="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && password.errors }"/>
+                            <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
+                                <div *ngIf="password.errors['required']">password is required</div>
+                            </div>
+                    </div>
+                </div>
+                <a (click)="onLoggedin()" href="javascript:void(0)" class="btn rounded-btn">{{
+                    'Log in' | translate
+                    }}</a>
+                <!-- &nbsp;
+                <a [routerLink]="['/signup']" class="btn rounded-btn">{{ 'Register' | translate }}</a> -->
+                &nbsp;
+                <a (click)="onClose()" [routerLink]="['/dashboard']" class="btn rounded-btn">{{ 'Close' | translate
+                    }}</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<nav [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }" class="sidebar">
+    <div (click)="toggleCollapsed()" [ngClass]="{ collapsed: collapsed }" class="toggle-button"
+    *ngIf="isAdmin">
+        <i class="fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}"></i>&nbsp;        
+    </div>
+    <!-- <span>{{ 'Collapse Sidebar' | translate }}</span> -->
+    <div class="list-group">
+        <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/dashboard">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+            <span>{{ 'Dashboard' | translate }}</span>
+        </a>
+        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/products/1']" class="list-group-item">
+            <i class="fa fa-fw fa-product-hunt"></i>&nbsp;
+            <span>{{ 'Products' | translate }}</span>
+        </a>
+        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/gallery']" class="list-group-item">
+            <i class="fa fa-fw fa-image"></i>&nbsp;
+            <span>{{ 'Gallery' | translate }}</span>
+        </a>
+        <!-- <a [routerLinkActive]="['router-link-active']" [routerLink]="['/forms']" class="list-group-item">
+            <i class="fa fa-fw fa-edit"></i>&nbsp;
+            <span>{{ 'Forms' | translate }}</span>
+        </a> -->
+        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/enquiry']" class="list-group-item">
+            <i class="fa fa-fw fa-edit"></i>&nbsp;
+            <span>{{ 'Enquiry' | translate }}</span>
+        </a>
+        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/contact-us']" class="list-group-item">
+            <i class="fa fa-fw fa-phone"></i>&nbsp;
+            <span>{{ 'Contact Us' | translate }}</span>
+        </a>       
+        <div class="nested-menu" *ngIf="isAdmin">
+            <a (click)="addExpandClass('pages')" class="list-group-item">
+                <i class="fa fa-plus"></i>&nbsp;
+                <span>{{ 'Pin Config' | translate }}</span>
+            </a>
+            <li [class.expand]="showMenu === 'pages'" class="nested">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/pin']" class="list-group-item">
+                            <i class="fa fa-fw fa-th"></i>&nbsp;
+                            <span>{{ 'Pin' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/add-edit-pin']" class="list-group-item">
+                            <i class="fa fa-fw fa-edit"></i>&nbsp;
+                            <span>{{ 'Add/Edit Pin' | translate }}</span>
+                        </a>
+                    </li>                    
+                </ul>
+            </li>
+        </div>        
+    </div>    
+</nav>

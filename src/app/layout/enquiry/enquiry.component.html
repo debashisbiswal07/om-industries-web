@@ -1,0 +1,80 @@
+<div>
+  <app-page-header *ngIf="showGrid" [heading]="'Enquiry'" [icon]="'fa-edit'"></app-page-header>
+
+  <!-- main app container -->
+  <div class="register-form">
+    <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)" novalidate>
+      <div class="form-group">
+        <label>Full Name<span class="color-red">*</span></label>
+        <input type="text" class="form-control" name="fullname" [(ngModel)]="form.fullname" required #fullname="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && fullname.errors }" />
+        <div *ngIf="f.submitted && fullname.errors" class="invalid-feedback">
+          <div *ngIf="fullname.errors['required']">Fullname is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Phone<span class="color-red">*</span></label>
+        <input type="number" class="form-control" name="phone" [(ngModel)]="form.phone" required minlength=10
+          maxlength=10 #phone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && phone.errors }" />
+        <div *ngIf="f.submitted && phone.errors" class="invalid-feedback">
+          <div *ngIf="phone.errors['required']">Phone is required</div>
+          <div *ngIf="phone.errors['minlength']">
+            Phone must be 10 characters
+          </div>
+          <div *ngIf="phone.errors['maxlength']">
+            Username must be 10 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email<span class="color-red">*</span></label>
+        <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+        <div *ngIf="f.submitted && email.errors" class="invalid-feedback">
+          <div *ngIf="email.errors['required']">Email is required</div>
+          <div *ngIf="email.errors['email']">Email is invalid</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Enquiry<span class="color-red">*</span></label>
+        <textarea type="textarea" class="form-control" name="enquiry" [(ngModel)]="form.enquiry" required
+          #enquiry="ngModel" [ngClass]="{ 'is-invalid': f.submitted && enquiry.errors }"></textarea>
+        <div *ngIf="f.submitted && enquiry.errors" class="invalid-feedback">
+          <div *ngIf="enquiry.errors['required']">Enquiry is required</div>
+        </div>
+      </div>
+
+      <div class="row" class="captcha">
+        <div class="col-xl-11 text-center">
+          <span class="fs-2">{{ captcha }}</span>
+        </div>
+        <div class="col-xl-1">
+          <span class="fs-3 cursor-pointer" (click)="reloadCaptcha()"><i class="fa fa-fw fa-refresh"></i></span>
+        </div>
+      </div>
+      <div class="form-group">        
+        <label>CAPTCHA<span class="color-red">*</span></label>
+        <input type="text" class="form-control" name="userCaptcha" [(ngModel)]="userCaptcha" required
+          [ngClass]="{ 'is-invalid': invalidCaptCha }" />
+        <div *ngIf="invalidCaptCha" class="invalid-feedback">
+          <div *ngIf="invalidCaptCha">Captcha is invalid</div>
+        </div>
+      </div>
+
+      <div class="form-group btn-margin-top">
+        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="button" (click)="onReset(f)" class="btn btn-warning float-right margin-left">
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="aggrid" *ngIf="showGrid && isAdmin">
+    <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-alpine" [rowData]="rowData"
+      [columnDefs]="columnDefs">
+    </ag-grid-angular>
+  </div>
+</div>
