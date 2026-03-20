@@ -1,21 +1,21 @@
-<div class="card text-white bg-{{ bgClass }}">
-    <div class="card-header">
-        <div class="row">
-            <div class="col col-xs-3">
-                <!-- <i class="fa {{ icon }} fa-5x"></i> -->
-                 <img [src]="src" height="100" width="100" class="img-trx">
-            </div>
-            <div class="col col-xs-9 text-right">
-                <!-- <div class="d-block huge">{{ count }}</div> -->
-                <div class="d-block"><b>{{ label }}</b></div>
-                <div class="d-block mt-2 font-size">{{ content }}</div>
-            </div>
-        </div>
+<div class="featured-product-card" [class]="'bg-' + bgClass">
+    <div class="card-image-container">
+        <img 
+            [src]="src" 
+            [alt]="label" 
+            class="product-image"
+            loading="lazy"
+            decoding="async">
+        <div class="card-overlay"></div>
     </div>
-    <div class="card-footer">        
-        <a class="float-right card-inverse" [href]="'/products/' + urlId">
-            <span class="float-left">View Details {{ data }}</span>
-            <span><i class="fa fa-arrow-circle-right"></i></span>
+    <div class="card-body">
+        <h3 class="product-name">{{ label }}</h3>
+        <p class="product-description">{{ content }}</p>
+    </div>
+    <div class="card-link-footer">
+        <a [href]="'/products/' + urlId" class="view-details-link">
+            <span>View Details</span>
+            <i class="fa fa-arrow-right"></i>
         </a>
     </div>
 </div>
