@@ -1,23 +1,225 @@
-<div>
-    <!-- <app-page-header [heading]="'Contact Us'" [icon]="'fa-phone'"></app-page-header> -->
-    <div class="row">
-        <div class="col-xl-6">
-            <div class="card mb-3 custom-height">
-                <div class="card-body">
-                    <app-enquiry [showGrid]="false"></app-enquiry>
+<div class="contact-us-wrapper">
+    <!-- Contact Page Header -->
+    <!-- <div class="contact-header">
+        <h1><i class="fa fa-map-marker"></i> Contact Us</h1>
+        <p>We'd love to hear from you. Get in touch with us today.</p>
+    </div> -->
+
+    <div class="row contact-container">
+        <!-- Left Side - Enquiry Form Only -->
+        <div class="col-lg-6 form-section">
+            <div class="form-card">
+                <div class="form-header">
+                    <h2>Send Your Enquiry</h2>
+                    <p>Fill the form below and our team will get back to you within 24 hours</p>
                 </div>
+
+                <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)" novalidate class="enquiry-form">
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullname">
+                            <i class="fa fa-user"></i> Full Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="fullname"
+                            class="form-control" 
+                            name="fullname" 
+                            [(ngModel)]="form.fullname" 
+                            required 
+                            #fullname="ngModel"
+                            placeholder="Enter your full name"
+                            [ngClass]="{ 'is-invalid': f.submitted && fullname.errors }" />
+                        <div *ngIf="f.submitted && fullname.errors" class="error-message">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <div *ngIf="fullname.errors['required']">Full name is required</div>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">
+                            <i class="fa fa-phone"></i> Phone <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="phone"
+                            class="form-control" 
+                            name="phone" 
+                            [(ngModel)]="form.phone" 
+                            required 
+                            minlength=10
+                            maxlength=10 
+                            #phone="ngModel" 
+                            placeholder="10-digit phone number"
+                            [ngClass]="{ 'is-invalid': f.submitted && phone.errors }" />
+                        <div *ngIf="f.submitted && phone.errors" class="error-message">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <div *ngIf="phone.errors['required']">Phone is required</div>
+                            <div *ngIf="phone.errors['minlength'] || phone.errors['maxlength']">Phone must be 10 digits</div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fa fa-envelope"></i> Email <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email"
+                            class="form-control" 
+                            name="email" 
+                            [(ngModel)]="form.email" 
+                            required 
+                            email 
+                            #email="ngModel"
+                            placeholder="your.email@example.com"
+                            [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+                        <div *ngIf="f.submitted && email.errors" class="error-message">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <div *ngIf="email.errors['required']">Email is required</div>
+                            <div *ngIf="email.errors['email']">Please enter a valid email</div>
+                        </div>
+                    </div>
+
+                    <!-- Enquiry Message -->
+                    <div class="form-group">
+                        <label for="enquiry">
+                            <i class="fa fa-edit"></i> Your Message <span class="required">*</span>
+                        </label>
+                        <textarea 
+                            id="enquiry"
+                            class="form-control" 
+                            name="enquiry" 
+                            [(ngModel)]="form.enquiry" 
+                            required
+                            rows="4"
+                            #enquiry="ngModel" 
+                            placeholder="Tell us about your enquiry. What product are you interested in?"
+                            [ngClass]="{ 'is-invalid': f.submitted && enquiry.errors }"></textarea>
+                        <div *ngIf="f.submitted && enquiry.errors" class="error-message">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <div *ngIf="enquiry.errors['required']">Please provide your enquiry details</div>
+                        </div>
+                    </div>
+
+                    <!-- CAPTCHA -->
+                    <div class="captcha-section">
+                        <label for="userCaptcha">
+                            <i class="fa fa-lock"></i> Security Code <span class="required">*</span>
+                        </label>
+                        <div class="captcha-container">
+                            <div class="captcha-code">
+                                <span class="code">{{ captcha }}</span>
+                                <button type="button" class="btn-refresh" (click)="reloadCaptcha()" title="Generate new code">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+                            </div>
+                            <input 
+                                type="text" 
+                                id="userCaptcha"
+                                class="form-control captcha-input" 
+                                name="userCaptcha" 
+                                [(ngModel)]="userCaptcha" 
+                                required
+                                placeholder="Enter code"
+                                [ngClass]="{ 'is-invalid': invalidCaptCha }" />
+                        </div>
+                        <div *ngIf="invalidCaptCha" class="error-message">
+                            <i class="fa fa-exclamation-circle"></i> Security code is invalid
+                        </div>
+                    </div>
+
+                    <!-- Submit & Reset Buttons -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-submit">
+                            <i class="fa fa-paper-plane"></i> Send Enquiry
+                        </button>
+                        <button type="button" (click)="onReset(f)" class="btn btn-reset">
+                            <i class="fa fa-times"></i> Clear Form
+                        </button>
+                    </div>
+
+                    <p class="form-footer">We respect your privacy. Your information is secure with us.</p>
+                </form>
             </div>
         </div>
-        <div class="col-xl-6">
-            <div class="card mb-3 custom-height">
-                <div class="mt-4 text-center">
-                    <h3>Om Industries</h3>
-                    <p><b>Mr. Benudhar Biswal</b> (Proprietor)</p>
-                    <p><b>Office :</b>&nbsp;Gala No. 1, Krishna Niwas, Safeed Pool Pipe Line Sakinaka,
-                    <br/> Andheri East Mumbai - 400072, Maharashtra, India</p>
-                    <p><b>Mobile No :</b>&nbsp; +91 9004006622</p>
-                    <p><b>Email Id :</b>&nbsp; <span class="email-link">info&#64;omindus.com</span>
-                    </p>
+
+        <!-- Right Side - Contact Information -->
+        <div class="col-lg-6 info-section">
+            <div class="info-card">
+                <div class="info-header">
+                    <h2><i class="fa fa-building-o"></i> Om Industries</h2>
+                </div>
+                
+                <div class="info-content">
+                    <!-- Proprietor Info -->
+                    <div class="info-item proprietor-item">
+                        <div class="info-icon">
+                            <i class="fa fa-user-circle"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Proprietor</h4>
+                            <p><span class="highlight">Mr. Benudhar Biswal</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Office Location -->
+                    <div class="info-item location-item">
+                        <div class="info-icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Office Address</h4>
+                            <p>Gala No. 1, Krishna Niwas<br/> Safeed Pool Pipe Line Sakinaka<br/> Andheri East, Mumbai - 400072<br/> Maharashtra, India</p>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="info-item phone-item">
+                        <div class="info-icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Mobile No.</h4>
+                            <p><a href="tel:+919004006622" class="contact-link">+91 9004006622</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="info-item email-item">
+                        <div class="info-icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:info&#64;omindus.com" class="contact-link">info&#64;omindus.com</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Company Benefits -->
+                    <div class="benefits-section">
+                        <h4>Why Choose Us?</h4>
+                        <div class="benefits-list">
+                            <div class="benefit-item">
+                                <i class="fa fa-check-circle"></i>
+                                <span>15+ Years Experience</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fa fa-check-circle"></i>
+                                <span>Industry Certified</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fa fa-check-circle"></i>
+                                <span>Global Standards</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fa fa-check-circle"></i>
+                                <span>24/7 Support</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
