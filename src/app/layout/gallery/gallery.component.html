@@ -1,30 +1,70 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Gallery'" [icon]="'fa-image'"></app-page-header>
-    <div class="row">
-        <div class="row">
-            <div class="col-sm-3" *ngFor="let img of images">
-                <div class="card text-white bg-light mb-3">
-                    <!-- <div class="card-header"></div> -->
-                    <img [src]="img.imgSrc" alt="img.imgId" class="display-img-small" (click)="open(content, img.imgSrc)" />
+    <!-- <app-page-header [heading]="'Gallery'" [icon]="'fa-image'"></app-page-header> -->
+    
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="gallery-header">
+            <h2>Our Transformer Gallery</h2>
+            <p class="gallery-subtitle">Explore our precision-engineered transformer solutions</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div 
+                *ngFor="let img of images; let i = index"
+                class="gallery-item"
+                [style.animationDelay]="(i * 0.05) + 's'"
+                (click)="open(content, img.imgSrc)">
+                <div class="gallery-card">
+                    <div class="image-container">
+                        <img 
+                            [src]="img.imgSrc" 
+                            [alt]="'Transformer ' + img.imgId"
+                            class="gallery-image"
+                            loading="lazy"
+                            decoding="async" />
+                        <div class="overlay"></div>
+                        <div class="hover-content">
+                            <i class="fa fa-expand-alt"></i>
+                            <p>Click to View</p>
+                        </div>
+                    </div>
+                    <div class="card-badge">
+                        <span>#{{ img.imgId }}</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Beautiful Modal Popup -->
     <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <!-- <h4 class="modal-title"></h4>
-            <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button> -->
-        </div>
-        <div class="modal-body">
-            <div>
-                <img [src]="selectedImage" alt="selectedImage" class="display-img-big" />
+        <div class="modal-content-wrapper">
+            <div class="modal-header-custom">
+                <button 
+                    type="button" 
+                    class="btn-close-custom"
+                    aria-label="Close"
+                    (click)="d('Cross click')">
+                    <i class="fa fa-times"></i>
+                </button>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button (click)="c('Close click')" class="btn btn-secondary" type="button">Close</button>
+            <div class="modal-body-custom">
+                <div class="image-modal-container">
+                    <img 
+                        [src]="selectedImage" 
+                        [alt]="'Selected image'"
+                        class="modal-image" />
+                    <div class="image-shine"></div>
+                </div>
+            </div>
+            <div class="modal-footer-custom">
+                <button 
+                    type="button"
+                    class="btn btn-close-modal"
+                    (click)="c('Close click')">
+                    <i class="fa fa-times"></i> Close
+                </button>
+            </div>
         </div>
     </ng-template>
 </div>
