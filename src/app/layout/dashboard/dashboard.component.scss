@@ -1,11 +1,630 @@
+// ============================================
+// Scroll Progress Indicator
+// ============================================
+
+.scroll-progress-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 3px;
+	background: linear-gradient(90deg, #3498db, #2ecc71, #e74c3c);
+	z-index: 9999;
+	box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+	transition: width 0.1s ease-out;
+}
+
+// ============================================
+// Hero Carousel Section
+// ============================================
+
+.hero-carousel-wrapper {
+	height: 80vh;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 20px;
+
+	.hero-carousel {
+		height: 100%;
+		width: 100%;
+	}
+}
+
+.carousel-slide-container {
+	position: relative;
+	width: 100%;
+	height: 80vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+
+	.carousel-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		display: block;
+		animation: zoomInSlide 8s ease-out;
+	}
+
+	.carousel-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.3) 100%);
+		z-index: 2;
+		animation: fadeInOverlay 1s ease-out forwards;
+		pointer-events: none;
+	}
+
+	.carousel-content {
+		position: absolute;
+		left: 50%;
+		top: 15%;
+		transform: translate(-50%, -50%);
+		z-index: 3;
+		text-align: center;
+		color: white;
+		width: 90%;
+		max-width: 800px;
+		pointer-events: none;
+		animation: slideUpContent 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+
+		.carousel-title {
+			font-size: clamp(2rem, 8vw, 3.5rem);
+			font-weight: 800;
+			margin: 0 0 15px 0;
+			text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+			letter-spacing: -1.5px;
+		}
+
+		.carousel-subtitle {
+			font-size: clamp(1rem, 3vw, 1rem);
+			font-weight: 300;
+			margin: 0;
+			text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+			letter-spacing: 0.5px;
+		}
+	}
+}
+
+// Carousel controls styling
+::ng-deep {
+	.hero-carousel {
+		// Navigation arrows
+		.carousel-control-prev,
+		.carousel-control-next {
+			width: 60px;
+			height: 60px;
+			background: rgba(255, 255, 255, 0.2);
+			border: 2px solid rgba(255, 255, 255, 0.5);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			top: 50%;
+			transform: translateY(-50%);
+			transition: all 0.4s ease;
+			pointer-events: auto;
+			cursor: pointer;
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.4);
+				border-color: rgba(255, 255, 255, 0.8);
+
+				.carousel-control-prev-icon,
+				.carousel-control-next-icon {
+					filter: brightness(1.2);
+				}
+			}
+
+			.carousel-control-prev-icon,
+			.carousel-control-next-icon {
+				width: 24px;
+				height: 24px;
+				filter: brightness(0) invert(1);
+				transition: filter 0.3s ease;
+			}
+		}
+
+		.carousel-control-prev {
+			left: 30px;
+		}
+
+		.carousel-control-next {
+			right: 30px;
+		}
+
+		// Indicators
+		.carousel-indicators {
+			bottom: 30px;
+			gap: 12px;
+			pointer-events: auto;
+
+			button {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				border: 2px solid rgba(255, 255, 255, 0.5);
+				background-color: rgba(255, 255, 255, 0.3);
+				transition: all 0.4s ease;
+				cursor: pointer;
+				pointer-events: auto;
+
+				&:hover {
+					background-color: rgba(255, 255, 255, 0.6);
+				}
+
+				&.active {
+					width: 32px;
+					border-radius: 6px;
+					background-color: white;
+					border: none;
+				}
+			}
+		}
+	}
+}
+
+// Animations
+@keyframes zoomInSlide {
+	from {
+		transform: scale(1.1);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+@keyframes fadeInOverlay {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideUpContent {
+	from {
+		opacity: 0;
+		transform: translate(-50%, -40%);
+	}
+	to {
+		opacity: 1;
+		transform: translate(-50%, -50%);
+	}
+}
+
+// Responsive
+@media (max-width: 768px) {
+	.carousel-slide-container {
+		height: 70vh;
+
+		.carousel-content {
+			width: 85%;
+		}
+	}
+
+	.hero-carousel-wrapper {
+		height: 70vh;
+	}
+
+	::ng-deep {
+		.hero-carousel {
+			.carousel-control-prev,
+			.carousel-control-next {
+				width: 50px;
+				height: 50px;
+			}
+
+			.carousel-control-prev {
+				left: 15px;
+			}
+
+			.carousel-control-next {
+				right: 15px;
+			}
+
+			.carousel-indicators {
+				bottom: 20px;
+				gap: 8px;
+
+				button {
+					width: 10px;
+					height: 10px;
+
+					&.active {
+						width: 25px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.carousel-slide-container {
+		height: 55vh;
+	}
+
+	.hero-carousel-wrapper {
+		height: 55vh;
+	}
+
+	::ng-deep {
+		.hero-carousel {
+			.carousel-control-prev,
+			.carousel-control-next {
+				width: 40px;
+				height: 40px;
+			}
+		}
+	}
+}
+
+// ============================================
+// Stats Section
+// ============================================
+
+.stats-section {
+	padding: 60px 20px;
+	background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+	margin-bottom: 40px;
+
+	.section-header {
+		text-align: center;
+		margin-bottom: 50px;
+		animation: slideDown 0.8s ease-out;
+
+		h2 {
+			font-size: 2.3rem;
+			color: #1a1a1a;
+			margin-bottom: 10px;
+			font-weight: 700;
+			letter-spacing: -0.5px;
+		}
+
+		.section-subtitle {
+			font-size: 1.1rem;
+			color: #666;
+			font-weight: 300;
+		}
+	}
+
+	.stats-container {
+		row-gap: 30px;
+	}
+}
+
+// ============================================
+// Stat Card Wrapper with Scroll Animation
+// ============================================
+
+.stat-card-wrapper {
+	opacity: 0;
+	transform: translateY(40px) scale(0.95);
+	transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+	animation-fill-mode: both;
+
+	[data-card-index].visible & {
+		animation: statCardReveal 0.8s ease-out forwards;
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+
+	&:hover {
+		transform: translateY(-8px) scale(1.02);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+	}
+}
+
+// ============================================
+// Info Card Section with Scroll Animation
+// ============================================
+
+.dashboard-info-card-wrapper {
+	padding: 60px 20px;
+	background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, rgba(46, 204, 113, 0.05) 100%);
+	opacity: 0;
+	transform: translateY(60px);
+	transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+	&.visible {
+		opacity: 1;
+		transform: translateY(0);
+
+		.dashboard-info-card {
+			animation: infoCardSlideIn 0.8s ease-out forwards;
+		}
+	}
+
+	.dashboard-info-card {
+		max-width: 1000px;
+		margin: 0 auto;
+		background: white;
+		border-radius: 12px;
+		overflow: hidden;
+		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+		border-left: 5px solid #2980b9;
+		transition: all 0.4s ease;
+
+		&:hover {
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+			transform: translateY(-5px);
+		}
+	}
+}
 
 .dashboard-info-header {
 	display: flex;
 	align-items: center;
-	gap: 0.75rem;
+	gap: 2rem;
+	padding: 30px 40px;
+	background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+	color: white;
+
+	.info-icon-box {
+		flex-shrink: 0;
+		width: 80px;
+		height: 80px;
+		background: rgba(255, 255, 255, 0.2);
+		border-radius: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		backdrop-filter: blur(10px);
+		transition: all 0.3s ease;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.3);
+			transform: scale(1.05) rotate(5deg);
+		}
+
+		.dashboard-info-icon {
+			font-size: 2.5rem;
+			color: white;
+		}
+	}
+
+	.info-header-text {
+		h2 {
+			font-size: 2rem;
+			color: white;
+			margin: 0;
+			font-weight: 700;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.info-tagline {
+			margin: 8px 0 0 0;
+			color: rgba(255, 255, 255, 0.9);
+			font-size: 1rem;
+			font-weight: 300;
+		}
+	}
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		text-align: center;
+		gap: 1.5rem;
+		padding: 25px 25px;
+
+		h2 {
+			font-size: 1.7rem;
+		}
+	}
 }
 
-.dashboard-info-icon {
-	font-size: 2rem;
-	margin-right: 0.5rem;
+.dashboard-info-body {
+	padding: 40px;
+
+	.dashboard-info-summary {
+		font-size: 1.05rem;
+		line-height: 1.8;
+		color: #333;
+		margin-bottom: 30px;
+
+		.info-highlight {
+			color: #2980b9;
+			font-weight: 600;
+		}
+	}
+
+	.dashboard-info-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 30px 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 20px;
+
+		li {
+			display: flex;
+			align-items: center;
+			gap: 15px;
+			font-size: 0.95rem;
+			color: #555;
+			transition: all 0.3s ease;
+			padding: 12px;
+			border-radius: 6px;
+
+			&:hover {
+				background: rgba(52, 152, 219, 0.05);
+				color: #2980b9;
+				transform: translateX(8px);
+			}
+
+			.info-list-icon {
+				color: #27ae60;
+				font-size: 1.2rem;
+				flex-shrink: 0;
+				transition: transform 0.3s ease;
+			}
+
+			&:hover .info-list-icon {
+				transform: scale(1.2);
+			}
+		}
+	}
+
+	.dashboard-info-footer {
+		padding-top: 20px;
+		border-top: 1px solid #eee;
+
+		.dashboard-info-btn {
+			display: inline-block;
+			padding: 12px 35px;
+			background: linear-gradient(135deg, #3498db, #2980b9);
+			color: white;
+			border: none;
+			border-radius: 6px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			text-decoration: none;
+			font-size: 1rem;
+
+			&:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+				background: linear-gradient(135deg, #2980b9, #1f618d);
+			}
+
+			&:active {
+				transform: translateY(-1px);
+			}
+		}
+	}
+
+	@media (max-width: 768px) {
+		padding: 25px;
+
+		.dashboard-info-summary {
+			font-size: 1rem;
+		}
+
+		.dashboard-info-list {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// ============================================
+// Animations
+// ============================================
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideDownFade {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes statCardReveal {
+	from {
+		opacity: 0;
+		transform: translateY(40px) scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes infoCardSlideIn {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// ============================================
+// Responsive Design
+// ============================================
+
+@media (max-width: 1024px) {
+	.stats-section {
+		padding: 40px 20px;
+
+		.section-header h2 {
+			font-size: 2rem;
+		}
+	}
+
+	.dashboard-info-header {
+		gap: 1.5rem;
+		padding: 25px 30px;
+
+		.info-icon-box {
+			width: 70px;
+			height: 70px;
+
+			.dashboard-info-icon {
+				font-size: 2rem;
+			}
+		}
+
+		.info-header-text h2 {
+			font-size: 1.7rem;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.stats-section {
+		padding: 30px 15px;
+
+		.section-header {
+			margin-bottom: 30px;
+
+			h2 {
+				font-size: 1.8rem;
+			}
+		}
+	}
+
+	.dashboard-info-card-wrapper {
+		padding: 30px 15px;
+	}
+}
+
+@media (max-width: 480px) {
+	.stats-section {
+		.section-header h2 {
+			font-size: 1.5rem;
+		}
+	}
+
+	.dashboard-info-header {
+		flex-direction: column;
+		text-align: center;
+		padding: 20px;
+
+		.info-header-text h2 {
+			font-size: 1.4rem;
+		}
+	}
 }

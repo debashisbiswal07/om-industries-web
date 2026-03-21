@@ -6,7 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
-
+  captcha: string = "";
+  userCaptcha: string = "";
+  invalidCaptCha: boolean = false;
+  form = {
+    fullname: '',
+    phone: '',
+    email: '',
+    enquiry: '',
+  };
   constructor() { }
 
   ngOnInit(): void {
