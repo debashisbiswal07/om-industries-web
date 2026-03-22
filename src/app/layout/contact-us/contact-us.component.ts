@@ -22,10 +22,6 @@ export class ContactUsComponent implements OnInit {
     enquiry: '',
   };
 
-  columnHeader: any = [{ "field": "enquiryId", width: 100 }, { "field": "fullname", width: 150 }, { "field": "phone", width: 150 },
-  { "field": "email", width: 200 }, { "field": "enquiry", width: 450 }, { "field": "isActive", width: 100 },
-  { "field": "createdDate", width: 150 }, { "field": "createdBy", width: 150 }];
-
   constructor(private appService: AppService, private toastrService: ToastrService,
     private router: Router, private authService: AuthService) { }
 
@@ -34,17 +30,12 @@ export class ContactUsComponent implements OnInit {
     this.generateRandomCaptcha();
   }
 
-  dateFormat(date: string) {
-    var datePipe = new DatePipe('en-US');
-    return datePipe.transform(date, 'dd/MM/yyyy');
-  }
-
   onSubmit(f: NgForm): void {
     if (this.form && this.captcha && this.userCaptcha && this.captcha === this.userCaptcha) {
       this.form.phone = this.form?.phone.toString();
       this.appService.postEqnuiry(this.form).subscribe(
         response => {
-          if (response?.result?.status == true) {
+          if (response?.success == true) {
             this.toastrService.success('Message Success!', 'We got your details, we will reach out soon.');
             this.router.navigate(['/dashboard']);
           }

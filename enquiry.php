@@ -885,7 +885,7 @@ namespace {
     define('SMTP_HOST',     'smtp.gmail.com');
     define('SMTP_PORT',     587);
     define('SMTP_USERNAME', 'debashisbiswal19@gmail.com');
-    define('SMTP_PASSWORD', 'hoek upzo zkmt gzmm');
+    define('SMTP_PASSWORD', 'your_app_password_here'); // Use an app password if 2FA is enabled
     define('ADMIN_EMAIL',   'ashisbis.biswal@gmail.com');
     define('ADMIN_NAME',    'Admin');
     define('FROM_NAME',     'Enquiry Form');
