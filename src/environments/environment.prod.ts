@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: "https://omindus-api/api/",
+    apiUrl: "https://theomindustries.in/",
     imgPath: "assets/images/"
 };

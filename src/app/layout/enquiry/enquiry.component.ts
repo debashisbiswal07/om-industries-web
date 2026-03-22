@@ -79,7 +79,7 @@ export class EnquiryComponent implements OnInit {
       this.form.phone = this.form?.phone.toString();
       this.appService.postEqnuiry(this.form).subscribe(
         response => {
-          if (response?.result?.status == true) {
+          if (response?.success == true) {
             this.toastrService.success('Message Success!', 'We got your details, we will reach out soon.');
             this.router.navigate(['/dashboard']);
           }

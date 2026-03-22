@@ -18,7 +18,7 @@ export class AppService {
   }
 
   postEqnuiry(payload: Enquiry): Observable<any> {
-    let url = this.url + `enquiry/postEnquiry`;
+    let url = this.url + `enquiry.php`;
     return this.http.post(url, payload);
   }
 
