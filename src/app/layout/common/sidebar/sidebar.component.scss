@@ -153,6 +153,8 @@ $topnav-background-color: #222;
     .sidebar {
         top: 73px;
         left: 0px;
+        width: 200px !important;
+        margin-left: -235px !important;
     }
 }
 
@@ -209,9 +211,5 @@ $topnav-background-color: #222;
 }
 
 .collapsed {
-    width: 60px;
-
-    span {
-        display: none;
-    }
+    width: 50px;
 }

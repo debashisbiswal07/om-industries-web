@@ -3,6 +3,7 @@ import { routerTransition } from '../../router.animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-product',
@@ -38,16 +39,22 @@ export class ProductComponent implements OnInit {
     11: { name: 'Electric Chokes', category: 'Coils & Chokes', image: 'assets/images/products/electric-chokes.jpg' }
   };
 
-  constructor(private route: ActivatedRoute, private router: Router, private toastrService: ToastrService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private toastrService: ToastrService, private viewportScroller: ViewportScroller) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.selectedProduct = parseInt(params['id'] ?? 1);
+      if (window.innerWidth < 992) {
+        this.viewportScroller.scrollToAnchor('product-details');
+      }
     });
   }
 
   setProduct(product: number) {
     this.selectedProduct = product;
+    if (window.innerWidth < 992) {
+      this.viewportScroller.scrollToAnchor('product-details');
+    }
   }
 
   toggleCategory(category: string) {
