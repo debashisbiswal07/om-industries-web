@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -37,7 +38,7 @@ export class ProductComponent implements OnInit {
     11: { name: 'Electric Chokes', category: 'Coils & Chokes', image: 'assets/images/products/electric-chokes.jpg' }
   };
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -64,5 +65,16 @@ export class ProductComponent implements OnInit {
 
   getProductImage(productId: number): string {
     return this.productData[productId]?.image || 'assets/images/placeholder.jpg';
+  }
+
+  buyProduct(product: any) {
+    // Implement buy product functionality here
+    this.toastrService.info('Buy functionality is not implemented yet, we are currently in process so please send your details', 'Info');
+    this.router.navigate(['/enquiry']);
+  }
+  
+  enquireProduct(product: any) {
+    // Implement send enquiry functionality here
+    this.router.navigate(['/enquiry']);
   }
 }
