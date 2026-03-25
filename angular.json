@@ -11,12 +11,12 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist",
+                        "outputPath": "dist/om-industries-web",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "tsConfig": "src/tsconfig.app.json",
                         "polyfills": "src/polyfills.ts",
-                        "assets": ["src/assets", "src/favicon.ico"],
+                        "assets": ["src/assets", "src/favicon.ico", "src/robots.txt", "src/sitemap.xml"],
                         "styles": ["node_modules/font-awesome/css/font-awesome.css", "src/styles/app.scss", "node_modules/ngx-toastr/toastr.css", "node_modules/ngx-spinner/animations/pacman.css"],
                         "scripts": ["node_modules/chart.js/dist/Chart.js"],
                         "allowedCommonJsDependencies": ["chart.js"],
@@ -83,6 +83,69 @@
                         "styles": ["node_modules/font-awesome/css/font-awesome.css", "src/styles/app.scss"],
                         "assets": ["src/assets", "src/favicon.ico"]
                     }
+                },
+                "server": {
+                  "builder": "@angular-devkit/build-angular:server",
+                  "options": {
+                    "outputPath": "dist/test-ng7/server",
+                    "main": "server.ts",
+                    "tsConfig": "src/tsconfig.server.json",
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "sourceMap": true,
+                    "extractLicenses": false,
+                    "vendorChunk": true
+                  },
+                  "configurations": {
+                    "production": {
+                      "buildOptimizer": true,
+                      "outputHashing": "media",
+                      "fileReplacements": [
+                        {
+                          "replace": "src/environments/environment.ts",
+                          "with": "src/environments/environment.prod.ts"
+                        }
+                      ],
+                      "optimization": true,
+                      "sourceMap": false,
+                      "extractLicenses": true,
+                      "vendorChunk": false
+                    }
+                  },
+                  "defaultConfiguration": "production"
+                },
+                "serve-ssr": {
+                  "builder": "@angular-devkit/build-angular:ssr-dev-server",
+                  "configurations": {
+                    "development": {
+                      "browserTarget": "test-ng7:build:development",
+                      "serverTarget": "test-ng7:server:development"
+                    },
+                    "production": {
+                      "browserTarget": "test-ng7:build:production",
+                      "serverTarget": "test-ng7:server:production"
+                    }
+                  },
+                  "defaultConfiguration": "development"
+                },
+                "prerender": {
+                  "builder": "@angular-devkit/build-angular:prerender",
+                  "options": {
+                    "routes": [
+                      "/"
+                    ]
+                  },
+                  "configurations": {
+                    "production": {
+                      "browserTarget": "test-ng7:build:production",
+                      "serverTarget": "test-ng7:server:production"
+                    },
+                    "development": {
+                      "browserTarget": "test-ng7:build:development",
+                      "serverTarget": "test-ng7:server:development"
+                    }
+                  },
+                  "defaultConfiguration": "production"
                 }
             }
         },

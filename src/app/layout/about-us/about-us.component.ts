@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { Meta, Title } from '@angular/platform-browser';
 
 interface Card {
   id: string;
@@ -53,9 +54,17 @@ export class AboutUsComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private meta: Meta, private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle('OM Industries | Industrial Solutions');
+    this.meta.addTags([
+      { name: 'description', content: 'OM Industries provides premium industrial solutions...' },
+      { name: 'keywords', content: 'industrial, manufacturer, OM, products' },
+      { property: 'og:title', content: 'OM Industries' },
+      { property: 'og:description', content: 'Manufacturer of all type of transformers' },
+      { property: 'og:url', content: 'https://theomindustries.in' },
+    ]);
     this.observeCardVisibility();
   }
 

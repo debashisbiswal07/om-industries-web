@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { ActivatedRoute } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product',
@@ -37,9 +38,17 @@ export class ProductComponent implements OnInit {
     11: { name: 'Electric Chokes', category: 'Coils & Chokes', image: 'assets/images/products/electric-chokes.jpg' }
   };
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private meta: Meta, private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle('OM Industries | Industrial Solutions');
+    this.meta.addTags([
+      { name: 'description', content: 'OM Industries provides premium industrial solutions...' },
+      { name: 'keywords', content: 'industrial, manufacturer, OM, products' },
+      { property: 'og:title', content: 'OM Industries' },
+      { property: 'og:description', content: 'Manufacturer of all type of transformers' },
+      { property: 'og:url', content: 'https://theomindustries.in' },
+    ]);
     this.route.params.subscribe(params => {
       this.selectedProduct = parseInt(params['id'] ?? 1);
     });

@@ -11,6 +11,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
             { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule) },
             { path: 'about-us', loadChildren: () => import('./about-us/about-us.module').then((m) => m.AboutUsModule) },
+            { path: 'products', redirectTo: 'products/1', pathMatch: 'full' },
             { path: 'products/:id', loadChildren: () => import('./product/product.module').then((m) => m.ProductModule) },
             { path: 'gallery', loadChildren: () => import('./gallery/gallery.module').then((m) => m.GalleryModule) },
             { path: 'enquiry', loadChildren: () => import('./enquiry/enquiry.module').then((m) => m.EnquiryModule) },            

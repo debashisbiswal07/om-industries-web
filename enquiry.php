@@ -892,7 +892,7 @@ namespace {
 
     // ── CORS & Headers ─────────────────────────────────────────
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Origin: https://www.theomindustries.in');
     header('Access-Control-Allow-Methods: POST, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type');
 
@@ -976,7 +976,7 @@ HTML;
         $mail->addReplyTo($emailId, $fullName);
 
         $mail->isHTML(true);
-        $mail->Subject = "New Enquiry from {$fullName}";
+        $mail->Subject = "New Transformer Enquiry from {$fullName}";
         $mail->Body    = $htmlBody;
         $mail->AltBody = $plainBody;
         $mail->SMTPDebug = 2;

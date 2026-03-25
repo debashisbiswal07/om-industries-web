@@ -1,14 +1,15 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { Meta, Title } from '@angular/platform-browser';
 
 interface StatCard {
-  bgClass: string;
-  src: string;
-  icon: string;
-  label: string;
-  urlId: string;
-  content: string;
-  isVisible: boolean;
+    bgClass: string;
+    src: string;
+    icon: string;
+    label: string;
+    urlId: string;
+    content: string;
+    isVisible: boolean;
 }
 
 @Component({
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
     public infoCardVisible = false;
     public scrollProgress = 0;
 
-    constructor() {
+    constructor(private meta: Meta, private title: Title) {
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
@@ -108,60 +109,68 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.title.setTitle('OM Industries | Industrial Solutions');
+        this.meta.addTags([
+            { name: 'description', content: 'OM Industries provides premium industrial solutions...' },
+            { name: 'keywords', content: 'industrial, manufacturer, OM, products' },
+            { property: 'og:title', content: 'OM Industries' },
+            { property: 'og:description', content: 'Manufacturer of all type of transformers' },
+            { property: 'og:url', content: 'https://theomindustries.in' },
+        ]);
         this.observeCardVisibility();
     }
 
     private observeCardVisibility(): void {
-        if (typeof IntersectionObserver !== 'undefined') {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const cardIndex = parseInt(entry.target.getAttribute('data-card-index') || '0', 10);
-                        if (cardIndex < this.statCards.length) {
-                            this.statCards[cardIndex].isVisible = true;
-                        }
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -80px 0px'
-            });
-
-            const infoObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        this.infoCardVisible = true;
-                        infoObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.2,
-                rootMargin: '0px 0px -100px 0px'
-            });
-
-            setTimeout(() => {
-                document.querySelectorAll('[data-card-index]').forEach(el => {
-                    observer.observe(el);
-                });
-                const infoCard = document.querySelector('.dashboard-info-card-wrapper');
-                if (infoCard) {
-                    infoObserver.observe(infoCard);
+    if(typeof IntersectionObserver !== 'undefined') {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const cardIndex = parseInt(entry.target.getAttribute('data-card-index') || '0', 10);
+                if (cardIndex < this.statCards.length) {
+                    this.statCards[cardIndex].isVisible = true;
                 }
-            }, 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -80px 0px'
+    });
+
+    const infoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                this.infoCardVisible = true;
+                infoObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+    });
+
+    setTimeout(() => {
+        document.querySelectorAll('[data-card-index]').forEach(el => {
+            observer.observe(el);
+        });
+        const infoCard = document.querySelector('.dashboard-info-card-wrapper');
+        if (infoCard) {
+            infoObserver.observe(infoCard);
         }
+    }, 100);
+}
     }
 
-    @HostListener('window:scroll', ['$event'])
-    onWindowScroll(): void {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        this.scrollProgress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    }
+@HostListener('window:scroll', ['$event'])
+onWindowScroll(): void {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    this.scrollProgress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+}
 
     public closeAlert(alert: any) {
-        const index: number = this.alerts.indexOf(alert);
-        this.alerts.splice(index, 1);
-    }
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
+}
 }
 

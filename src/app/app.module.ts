@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +51,7 @@ export function tokenGetter() {
     providers: [AuthGuard, JwtHelperService,
         { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
         provideHttpClient(withInterceptors([AuthInterceptor])),
-        provideHttpClient(withInterceptorsFromDi())]
+        provideHttpClient(withInterceptorsFromDi()),
+        provideClientHydration()]
 })
 export class AppModule { }
