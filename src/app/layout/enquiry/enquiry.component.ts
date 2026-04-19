@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ColDef } from 'ag-grid-community';
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../../../../src/app/shared/services/auth.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-enquiry',
@@ -32,9 +33,17 @@ export class EnquiryComponent implements OnInit {
   rowData: any[] = [];
   columnDefs: ColDef[] = [];
   constructor(private appService: AppService, private toastrService: ToastrService,
-    private router: Router, private authService: AuthService) { }
+    private router: Router, private authService: AuthService, private meta: Meta, private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle('OM Industries | Industrial Solutions');
+    this.meta.addTags([
+      { name: 'description', content: 'OM Industries provides premium industrial solutions...' },
+      { name: 'keywords', content: 'industrial, manufacturer, OM, products' },
+      { property: 'og:title', content: 'OM Industries' },
+      { property: 'og:description', content: 'Manufacturer of all type of transformers' },
+      { property: 'og:url', content: 'https://omindus.com' },
+    ]);
     this.invalidCaptCha = false;
     this.generateRandomCaptcha();
     this.isAdmin = this.authService.isAdmin();
@@ -56,7 +65,7 @@ export class EnquiryComponent implements OnInit {
           // });
           //console.log(colDef);
           this.columnDefs = this.columnHeader;
-          response?.result?.forEach(element => {
+          response?.result?.forEach((element: any) => {
             element.createdDate = this.dateFormat(element?.createdDate?.toString())
           });
           this.rowData = response?.result;

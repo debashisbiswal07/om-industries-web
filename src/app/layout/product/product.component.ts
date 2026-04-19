@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
 import { ViewportScroller } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product',
@@ -39,9 +40,19 @@ export class ProductComponent implements OnInit {
     11: { name: 'Electric Chokes', category: 'Coils & Chokes', image: 'assets/images/products/electric-chokes.jpg' }
   };
 
-  constructor(private route: ActivatedRoute, private router: Router, private toastrService: ToastrService, private viewportScroller: ViewportScroller) { }
+  constructor(private route: ActivatedRoute, private router: Router,
+    private toastrService: ToastrService, private viewportScroller: ViewportScroller,
+    private meta: Meta, private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle('OM Industries | Industrial Solutions');
+    this.meta.addTags([
+      { name: 'description', content: 'OM Industries provides premium industrial solutions...' },
+      { name: 'keywords', content: 'industrial, manufacturer, OM, products' },
+      { property: 'og:title', content: 'OM Industries' },
+      { property: 'og:description', content: 'Manufacturer of all type of transformers' },
+      { property: 'og:url', content: 'https://omindus.com' },
+    ]);
     this.route.params.subscribe(params => {
       this.selectedProduct = parseInt(params['id'] ?? 1);
       if (window.innerWidth < 992) {
@@ -76,10 +87,10 @@ export class ProductComponent implements OnInit {
 
   buyProduct(product: any) {
     // Implement buy product functionality here
-    this.toastrService.info('Buy functionality is not implemented yet, we are currently in process so please send your details', 'Info');
+    this.toastrService.info('We are currently in process to add payment options, so please send your details', 'Info');
     this.router.navigate(['/enquiry']);
   }
-  
+
   enquireProduct(product: any) {
     // Implement send enquiry functionality here
     this.router.navigate(['/enquiry']);

@@ -886,15 +886,24 @@ namespace {
     define('SMTP_PORT',     587);
     define('SMTP_USERNAME', 'debashisbiswal19@gmail.com');
     define('SMTP_PASSWORD', 'your_app_password_here'); // Use an app password if 2FA is enabled
-    define('ADMIN_EMAIL',   'ashisbis.biswal@gmail.com');
+    define('ADMIN_EMAIL',   'info@omindus.com');
     define('ADMIN_NAME',    'Admin');
     define('FROM_NAME',     'Enquiry Form');
 
     // ── CORS & Headers ─────────────────────────────────────────
-    header('Content-Type: application/json');
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type');
+	$allowed_origins = ['https://www.theomindustries.in', 'https://www.omindus.com', 'https://omindus.com'];
+    // 2. Check if the requesting origin is in your list
+	if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowed_origins)) {
+		header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+	}
+
+	header('Access-Control-Allow-Methods: POST, OPTIONS');
+	header('Access-Control-Allow-Headers: Content-Type');
+
+	// 3. Handle preflight (OPTIONS) requests immediately
+	if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+		exit; 
+	}
 
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
     if ($_SERVER['REQUEST_METHOD'] !== 'POST')    {

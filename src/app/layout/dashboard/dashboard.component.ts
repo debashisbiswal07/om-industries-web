@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { Meta, Title } from '@angular/platform-browser';
 
 interface StatCard {
   bgClass: string;
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
     public infoCardVisible = false;
     public scrollProgress = 0;
 
-    constructor() {
+    constructor(private meta: Meta, private title: Title) {
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
@@ -108,6 +109,14 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.title.setTitle('OM Industries | Industrial Solutions');
+        this.meta.addTags([
+            { name: 'description', content: 'OM Industries provides premium industrial solutions...' },
+            { name: 'keywords', content: 'omindustries, industrial, manufacturer, OM, products' },
+            { property: 'og:title', content: 'OM Industries' },
+            { property: 'og:description', content: 'Manufacturer of all type of transformers' },
+            { property: 'og:url', content: 'https://omindus.com' },
+        ]);
         this.observeCardVisibility();
     }
 
